@@ -1,0 +1,219 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1130 340" width="1130" height="340"
+     role="img" aria-label="ChatNotion: a structured ChatGPT answer becomes a knowledge tree, then an editable note with a highlight and an attached note"
+     font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif">
+  <title>ChatNotion — from a structured answer to an editable knowledge tree</title>
+  <style>
+    /* One 14.4s loop. Timings mirror the beat list in docs/script.js.
+       Base opacity is the finished frame, so if a renderer strips animation
+       the diagram still reads as the end state. */
+    .dg-temp, .dg-cursor, .dg-ripple { opacity: 0 }
+    @keyframes a-dg-card { 0%,1.806% {opacity:0} 4.583%,100% {opacity:1} }
+    .dg-card { animation: a-dg-card 14.4s infinite }
+    @keyframes a-dg-body { 0%,4.444% {opacity:0} 7.222%,100% {opacity:1} }
+    .dg-body { animation: a-dg-body 14.4s infinite }
+    @keyframes a-dg-btn { 0%,8.056% {opacity:0} 10.833%,100% {opacity:1} }
+    .dg-btn { animation: a-dg-btn 14.4s infinite }
+    @keyframes a-dg-n { 0%,19.861% {opacity:0} 22.639%,100% {opacity:1} }
+    .dg-n { animation: a-dg-n 14.4s infinite }
+    @keyframes a-dg-leaf { 0%,25.0% {opacity:0} 27.778%,100% {opacity:1} }
+    .dg-leaf { animation: a-dg-leaf 14.4s infinite }
+    @keyframes a-dg-pick { 0%,33.889% {opacity:0} 36.667%,100% {opacity:1} }
+    .dg-pick { animation: a-dg-pick 14.4s infinite }
+    @keyframes a-dg-pencil { 0%,35.556% {opacity:0} 38.333%,100% {opacity:1} }
+    .dg-pencil { animation: a-dg-pencil 14.4s infinite }
+    @keyframes a-dg-link { 0%,44.306% {opacity:0} 47.083%,100% {opacity:1} }
+    .dg-link { animation: a-dg-link 14.4s infinite }
+    @keyframes a-dg-note { 0%,44.306% {opacity:0} 47.083%,100% {opacity:1} }
+    .dg-note { animation: a-dg-note 14.4s infinite }
+    @keyframes a-dg-editon { 0%,53.472% {opacity:0} 56.25%,100% {opacity:1} }
+    .dg-editon { animation: a-dg-editon 14.4s infinite }
+    @keyframes a-dg-hl { 0%,70.0% {opacity:0} 72.778%,100% {opacity:1} }
+    .dg-hl { animation: a-dg-hl 14.4s infinite }
+    @keyframes a-dg-notebox { 0%,76.944% {opacity:0} 79.722%,100% {opacity:1} }
+    .dg-notebox { animation: a-dg-notebox 14.4s infinite }
+    @keyframes a-dg-foot { 0%,79.306% {opacity:0} 82.083%,100% {opacity:1} }
+    .dg-foot { animation: a-dg-foot 14.4s infinite }
+    @keyframes a-dg-t1 { 0%,17.778% {opacity:0} 18.194%,100% {opacity:1} }
+    @keyframes d-dg-t1 { 0%,17.778% {stroke-dashoffset:var(--len)} 21.25%,100% {stroke-dashoffset:0} }
+    .dg-t1 { stroke-dasharray: var(--len); animation: a-dg-t1 14.4s infinite, d-dg-t1 14.4s infinite }
+    @keyframes a-dg-t2 { 0%,22.778% {opacity:0} 23.194%,100% {opacity:1} }
+    @keyframes d-dg-t2 { 0%,22.778% {stroke-dashoffset:var(--len)} 26.25%,100% {stroke-dashoffset:0} }
+    .dg-t2 { stroke-dasharray: var(--len); animation: a-dg-t2 14.4s infinite, d-dg-t2 14.4s infinite }
+    @keyframes t-dg-sel { 0%,60.417% {opacity:0} 62.153%,70.0% {opacity:1} 71.736%,100% {opacity:0} }
+    .dg-sel { animation: t-dg-sel 14.4s infinite }
+    @keyframes t-dg-pop { 0%,62.5% {opacity:0} 64.236%,79.306% {opacity:1} 81.042%,100% {opacity:0} }
+    .dg-pop { animation: t-dg-pop 14.4s infinite }
+    @keyframes cur-move { 0.0%{transform:translate(150px,300px)} 4.306%{transform:translate(150px,300px)} 10.278%{transform:translate(150px,300px)} 14.583%{transform:translate(114px,256px)} 27.917%{transform:translate(114px,256px)} 32.222%{transform:translate(614px,142px)} 38.194%{transform:translate(614px,142px)} 42.5%{transform:translate(702px,142px)} 47.5%{transform:translate(702px,142px)} 51.806%{transform:translate(1053px,84px)} 56.111%{transform:translate(1053px,84px)} 60.417%{transform:translate(914px,153px)} 65.556%{transform:translate(914px,153px)} 69.861%{transform:translate(880px,117px)} 72.5%{transform:translate(880px,117px)} 76.806%{transform:translate(962px,117px)} 100%{transform:translate(962px,117px)} }
+    @keyframes cur-fade { 0%,10.278% {opacity:0} 12.361%,82.778% {opacity:1} 84.861%,100% {opacity:0} }
+    .dg-cursor { animation: cur-move 14.4s infinite, cur-fade 14.4s infinite }
+    @keyframes cur-ripple { 0%{opacity:0;transform:scale(.12)} 15.833%{opacity:.45;transform:scale(.12)} 19.653%{opacity:0;transform:scale(1)} 32.5%{opacity:.45;transform:scale(.12)} 36.319%{opacity:0;transform:scale(1)} 42.639%{opacity:.45;transform:scale(.12)} 46.458%{opacity:0;transform:scale(1)} 51.944%{opacity:.45;transform:scale(.12)} 55.764%{opacity:0;transform:scale(1)} 60.417%{opacity:.45;transform:scale(.12)} 64.236%{opacity:0;transform:scale(1)} 70.0%{opacity:.45;transform:scale(.12)} 73.819%{opacity:0;transform:scale(1)} 76.944%{opacity:.45;transform:scale(.12)} 80.764%{opacity:0;transform:scale(1)} 100%{opacity:0} }
+    .dg-ripple { animation: cur-ripple 14.4s infinite }
+  </style>
+  <rect width="1130" height="340" fill="#f4f3f7"/>
+
+        <defs>
+          <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="155%">
+            <feDropShadow dx="0" dy="6" stdDeviation="11" flood-color="#3d2a9e" flood-opacity="0.15"/>
+          </filter>
+          <!-- The pill is small, so it gets a much tighter shadow than the cards. -->
+          <filter id="pillShadow" x="-30%" y="-40%" width="160%" height="185%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#3d2a9e" flood-opacity="0.13"/>
+          </filter>
+        </defs>
+
+        <!-- 1 · the finished ChatGPT answer, with Generate tree in its own footer -->
+        <g class="dg dg-card">
+          <g filter="url(#cardShadow)"><rect x="24" y="44" width="232" height="238" rx="16" fill="#fff" stroke="#e7e5ee" stroke-width="1.4"/></g>
+          <text x="44" y="74" fill="#8a8a9a" font-size="9.5" font-weight="700" letter-spacing="0.08em">CHATGPT ANSWER</text>
+        </g>
+        <g class="dg dg-body">
+          <rect x="44" y="86" width="118" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="102" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="103" width="150" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="116" width="126" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="44" y="134" width="100" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="150" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="151" width="144" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="164" width="120" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="44" y="182" width="110" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="198" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="199" width="138" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="212" width="114" height="6" rx="3" fill="#e7e5ee"/>
+          <line x1="44" y1="228" x2="236" y2="228" stroke="#efedf5" stroke-width="1"/>
+        </g>
+        <g class="dg dg-btn">
+          <g filter="url(#pillShadow)"><rect x="44" y="240" width="140" height="32" rx="16" fill="#fff" stroke="#d9d2f5" stroke-width="1.4"/></g>
+          <path d="M64 248 L66.2 253.4 L71.6 256 L66.2 258.6 L64 264 L61.8 258.6 L56.4 256 L61.8 253.4 Z" fill="#6d4aff"/>
+          <text x="80" y="260" fill="#16161f" font-size="12" font-weight="650">Generate tree</text>
+        </g>
+
+        <!-- 2 · the trunk forks into three evenly spaced branches -->
+        <g fill="none" stroke="#c9bdf7" stroke-width="2.2" stroke-linecap="round">
+          <path class="dg dg-draw dg-t1" style="--len:134.5" d="M268 163 C 316 163, 316 79, 364 79"/>
+          <path class="dg dg-draw dg-t1" style="--len:96" d="M268 163 L 364 163"/>
+          <path class="dg dg-draw dg-t1" style="--len:134.5" d="M268 163 C 316 163, 316 247, 364 247"/>
+        </g>
+        <g fill="none" stroke="#d8cff5" stroke-width="1.8" stroke-linecap="round">
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 79 C 526 79, 526 58, 548 58"/>
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 79 C 526 79, 526 100, 548 100"/>
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 163 C 526 163, 526 142, 548 142"/>
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 163 C 526 163, 526 184, 548 184"/>
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 247 C 526 247, 526 226, 548 226"/>
+          <path class="dg dg-draw dg-t2" style="--len:50.3" d="M504 247 C 526 247, 526 268, 548 268"/>
+        </g>
+
+        <!-- 3 · every branch carries the same number of children, evenly spaced -->
+        <g class="dg dg-n">
+          <rect x="364" y="62" width="140" height="34" rx="11" fill="#fff" stroke="#e2d9ff" stroke-width="1.5"/>
+          <circle cx="382" cy="79" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="83" fill="#16161f" font-size="12" font-weight="600">Fundamentals</text>
+        </g>
+        <g class="dg dg-n">
+          <rect x="364" y="146" width="140" height="34" rx="11" fill="#f1ecff" stroke="#6d4aff" stroke-width="2"/>
+          <circle cx="382" cy="163" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="167" fill="#16161f" font-size="12" font-weight="700">Core methods</text>
+        </g>
+        <g class="dg dg-n">
+          <rect x="364" y="230" width="140" height="34" rx="11" fill="#fff" stroke="#e2d9ff" stroke-width="1.5"/>
+          <circle cx="382" cy="247" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="251" fill="#16161f" font-size="12" font-weight="600">Applications</text>
+        </g>
+
+        <g class="dg dg-leaf">
+          <rect x="548" y="44" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="58" r="4" fill="#c7bef0"/>
+          <text x="576" y="62" fill="#3a3a48" font-size="11" font-weight="500">Key terms</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="86" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="100" r="4" fill="#c7bef0"/>
+          <text x="576" y="104" fill="#3a3a48" font-size="11" font-weight="500">History</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="128" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="142" r="4" fill="#c7bef0"/>
+          <text x="576" y="146" fill="#3a3a48" font-size="11" font-weight="500">Algorithms</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="170" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="184" r="4" fill="#c7bef0"/>
+          <text x="576" y="188" fill="#3a3a48" font-size="11" font-weight="500">Heuristics</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="212" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="226" r="4" fill="#c7bef0"/>
+          <text x="576" y="230" fill="#3a3a48" font-size="11" font-weight="500">Case study</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="254" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="268" r="4" fill="#c7bef0"/>
+          <text x="576" y="272" fill="#3a3a48" font-size="11" font-weight="500">Further reading</text>
+        </g>
+
+        <!-- 4 · the clicked leaf gets an inline pencil action; that is what opens the note -->
+        <g class="dg dg-pick">
+          <rect x="548" y="128" width="132" height="28" rx="9" fill="#f1ecff" stroke="#6d4aff" stroke-width="1.8"/>
+          <circle cx="563" cy="142" r="4" fill="#6d4aff"/>
+          <text x="576" y="146" fill="#3a3a48" font-size="11" font-weight="650">Algorithms</text>
+        </g>
+        <g class="dg dg-pencil" transform="translate(688,128)">
+          <circle cx="14" cy="14" r="14" fill="#6d4aff"/>
+          <g transform="translate(6.6,6.6) scale(0.6)" fill="#fff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+        </g>
+        <path class="dg dg-link" d="M722 142 C 734 142, 738 163, 750 163" fill="none" stroke="#6d4aff" stroke-width="2.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+
+        <!-- 5 · the note opens read-only, with Edit as the way in -->
+        <g class="dg dg-note">
+          <g filter="url(#cardShadow)"><rect x="756" y="57" width="350" height="212" rx="16" fill="#fff" stroke="#6d4aff" stroke-width="1.6"/></g>
+          <text x="778" y="88" fill="#16161f" font-size="13" font-weight="700">Algorithms</text>
+          <rect x="1022" y="72" width="62" height="24" rx="12" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.2"/>
+          <g transform="translate(1031,77) scale(0.5)" fill="#8a8a9a"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+          <text x="1047" y="88" fill="#3a3a48" font-size="10.5" font-weight="600">Edit</text>
+          <line x1="776" y1="104" x2="1086" y2="104" stroke="#efedf5" stroke-width="1"/>
+          <rect x="778" y="118" width="290" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="134" width="246" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="150" width="272" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="166" width="214" height="7" rx="3.5" fill="#e7e5ee"/>
+        </g>
+        <!-- Edit engaged -->
+        <g class="dg dg-editon">
+          <rect x="1022" y="72" width="62" height="24" rx="12" fill="#f1ecff" stroke="#6d4aff" stroke-width="1.6"/>
+          <g transform="translate(1031,77) scale(0.5)" fill="#6d4aff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+          <text x="1047" y="88" fill="#16161f" font-size="10.5" font-weight="700">Edit</text>
+        </g>
+
+        <!-- 6 · select a passage — the popover offers two separate actions -->
+        <rect class="dg-temp dg-sel" x="772" y="144" width="284" height="19" rx="5" fill="rgba(109,74,255,0.18)"/>
+        <g class="dg-temp dg-pop">
+          <g filter="url(#pillShadow)"><rect x="836" y="100" width="172" height="34" rx="11" fill="#fff" stroke="#e7e5ee" stroke-width="1.2"/></g>
+          <rect x="846" y="111" width="12" height="12" rx="3" fill="#f4a6a6" stroke="#dd8080" stroke-width="1"/>
+          <text x="864" y="121" fill="#3a3a48" font-size="10.5" font-weight="600">Highlight</text>
+          <line x1="920" y1="108" x2="920" y2="126" stroke="#e7e5ee" stroke-width="1.2"/>
+          <rect x="930" y="111" width="12" height="12" rx="3" fill="#fffbea" stroke="#eadb9b" stroke-width="1"/>
+          <text x="948" y="121" fill="#3a3a48" font-size="10.5" font-weight="600">Add note</text>
+        </g>
+
+        <!-- 7 · highlight first, then the note attached to it -->
+        <g class="dg dg-hl">
+          <rect x="772" y="144" width="284" height="19" rx="5" fill="#fdeaea" stroke="#efaeae" stroke-width="1.2"/>
+          <rect x="778" y="150" width="272" height="7" rx="3.5" fill="#de8c8c"/>
+        </g>
+        <g class="dg dg-notebox">
+          <rect x="772" y="186" width="284" height="42" rx="9" fill="#fffbea" stroke="#eadb9b" stroke-width="1.2"/>
+          <rect x="782" y="194" width="3" height="26" rx="1.5" fill="#e2c86a"/>
+          <rect x="796" y="199" width="232" height="5" rx="2.5" fill="#d9cfa5"/>
+          <rect x="796" y="211" width="180" height="5" rx="2.5" fill="#d9cfa5"/>
+        </g>
+        <text class="dg dg-foot" x="778" y="252" fill="#a99fd6" font-size="9.5" font-weight="600">&#9998; edited &#183; saved locally</text>
+
+        <!-- the pointer that drives the whole sequence -->
+        <g class="dg-cursor">
+          <circle class="dg-ripple" cx="0" cy="0" r="17" fill="#6d4aff"/>
+          <path d="M0 0 L0 19 L4.7 14.4 L8 22 L11.4 20.5 L8.2 13 L14 13 Z" fill="#16161f" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+        </g>
+
+        <!-- labels -->
+        <text class="dg dg-card" x="140" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Structured answer</text>
+        <text class="dg dg-n" x="522" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Knowledge tree</text>
+        <text class="dg dg-note" x="931" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Editable note</text>
+      </svg>

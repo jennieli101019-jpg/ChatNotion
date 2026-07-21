@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ChatNotion — One clean workspace for every ChatGPT conversation</title>
+  <meta name="description" content="ChatNotion is an open-source, account-free Chrome extension that organizes ChatGPT conversations into a freely nested workspace and turns structured answers into explorable knowledge trees. Private by design." />
+  <link rel="icon" type="image/svg+xml" href="assets/icon.svg" />
+
+  <!-- Link previews. Absolute URLs are required: most scrapers do not resolve relative paths. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="ChatNotion" />
+  <meta property="og:title" content="ChatNotion — One clean workspace for every ChatGPT conversation" />
+  <meta property="og:description" content="Organize ChatGPT chats into editable knowledge trees, and edit the original answers into your own private notes. Open source, account-free, fully local." />
+  <meta property="og:url" content="https://jennieli101019-jpg.github.io/ChatNotion/" />
+  <meta property="og:image" content="https://jennieli101019-jpg.github.io/ChatNotion/assets/chatnotion-demo-poster.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <img src="assets/icon.svg" alt="ChatNotion logo" />
+      <span>ChatNotion</span>
+    </a>
+    <nav class="nav-links">
+      <a class="navlink" href="#demo" data-lang-en>Demo</a><a class="navlink" href="#demo" data-lang-zh>演示</a>
+      <a class="navlink" href="#tree" data-lang-en>Tree mode</a><a class="navlink" href="#tree" data-lang-zh>树模式</a>
+      <a class="navlink" href="#notes" data-lang-en>Notes</a><a class="navlink" href="#notes" data-lang-zh>笔记</a>
+      <a class="navlink" href="#features" data-lang-en>Features</a><a class="navlink" href="#features" data-lang-zh>功能</a>
+      <a class="navlink" href="#privacy" data-lang-en>Privacy</a><a class="navlink" href="#privacy" data-lang-zh>隐私</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang" role="group" aria-label="Language">
+        <button data-set-lang="en" class="active">EN</button>
+        <button data-set-lang="zh">中文</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<a id="top"></a>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow" data-lang-en>Open-source ChatGPT workspace, trees &amp; notes · Chrome extension</span>
+    <span class="eyebrow" data-lang-zh>开源 ChatGPT 工作台 · 知识树 · 笔记 · Chrome 扩展</span>
+
+    <h1>
+      <span data-lang-en>Every conversation.<br><span class="accent">One workspace.</span></span>
+      <span data-lang-zh>每一段对话，<br><span class="accent">同一个工作台。</span></span>
+    </h1>
+
+    <p class="tagline">
+      <span data-lang-en>ChatGPT is where you think. <span class="accent">ChatNotion is where you keep it.</span></span>
+      <span data-lang-zh>在 ChatGPT 里思考，<span class="accent">在 ChatNotion 里留存。</span></span>
+    </p>
+
+    <p class="sub" data-lang-en>
+      Organize every ChatGPT chat into one nested workspace, turn any answer into an explorable
+      knowledge tree, and edit it down into notes that are yours — no account, no backend, right inside ChatGPT.
+    </p>
+    <p class="sub" data-lang-zh>
+      把每一段 ChatGPT 对话收进一个可自由嵌套的工作台，把任何回答展开成可探索的知识树，
+      再删减成属于你自己的笔记——无需账号、无需后端，直接在 ChatGPT 中运行。
+    </p>
+
+    <div class="hero-cta">
+      <a class="btn btn-dark" href="https://github.com/jennieli101019-jpg/ChatNotion" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.3-1.7-1.3-1.7-1.06-.72.08-.71.08-.71 1.17.08 1.79 1.2 1.79 1.2 1.04 1.79 2.73 1.27 3.4.97.1-.76.4-1.27.74-1.56-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.29 1.2-3.1-.13-.29-.52-1.46.1-3.05 0 0 .97-.31 3.2 1.18a11 11 0 0 1 5.82 0c2.22-1.5 3.19-1.18 3.19-1.18.62 1.59.23 2.76.11 3.05.75.81 1.2 1.84 1.2 3.1 0 4.43-2.7 5.4-5.28 5.69.42.36.79 1.07.79 2.16v3.2c0 .31.2.67.8.55A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5Z"/></svg>
+        <span data-lang-en>Star on GitHub</span><span data-lang-zh>在 GitHub 点 Star</span>
+      </a>
+      <span class="btn btn-pending" role="note" aria-disabled="true"
+            title="Chrome Web Store listing is under review">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3.5"/><path d="M3.5 8.5h9M8 21l4-9"/></svg>
+        <span data-lang-en>Chrome Web Store · Under review</span><span data-lang-zh>Chrome 应用商店 · 审核中，待上架</span>
+      </span>
+    </div>
+
+    <p class="meta">
+      <span data-lang-en>Free &amp; open source · MIT · Chrome · Private by design — no server, no tracking</span>
+      <span data-lang-zh>免费开源 · MIT 协议 · Chrome · 隐私优先 — 无服务器，无追踪</span>
+    </p>
+
+    <!-- knowledge tree illustration -->
+    <div class="tree-figure reveal" aria-hidden="true">
+      <svg viewBox="0 0 1130 340" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif">
+        <defs>
+          <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="155%">
+            <feDropShadow dx="0" dy="6" stdDeviation="11" flood-color="#3d2a9e" flood-opacity="0.15"/>
+          </filter>
+          <!-- The pill is small, so it gets a much tighter shadow than the cards. -->
+          <filter id="pillShadow" x="-30%" y="-40%" width="160%" height="185%">
+            <feDropShadow dx="0" dy="2" stdDeviation="3.5" flood-color="#3d2a9e" flood-opacity="0.13"/>
+          </filter>
+        </defs>
+
+        <!-- 1 · the finished ChatGPT answer, with Generate tree in its own footer -->
+        <g class="dg dg-card">
+          <g filter="url(#cardShadow)"><rect x="24" y="44" width="232" height="238" rx="16" fill="#fff" stroke="#e7e5ee" stroke-width="1.4"/></g>
+          <text x="44" y="74" fill="#8a8a9a" font-size="9.5" font-weight="700" letter-spacing="0.08em">CHATGPT ANSWER</text>
+        </g>
+        <g class="dg dg-body">
+          <rect x="44" y="86" width="118" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="102" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="103" width="150" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="116" width="126" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="44" y="134" width="100" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="150" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="151" width="144" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="164" width="120" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="44" y="182" width="110" height="9" rx="4.5" fill="#16161f"/>
+          <rect x="51" y="198" width="1.6" height="24" fill="#e7e5ee"/>
+          <rect x="60" y="199" width="138" height="6" rx="3" fill="#e7e5ee"/>
+          <rect x="60" y="212" width="114" height="6" rx="3" fill="#e7e5ee"/>
+          <line x1="44" y1="228" x2="236" y2="228" stroke="#efedf5" stroke-width="1"/>
+        </g>
+        <g class="dg dg-btn">
+          <g filter="url(#pillShadow)"><rect x="44" y="240" width="140" height="32" rx="16" fill="#fff" stroke="#d9d2f5" stroke-width="1.4"/></g>
+          <path d="M64 248 L66.2 253.4 L71.6 256 L66.2 258.6 L64 264 L61.8 258.6 L56.4 256 L61.8 253.4 Z" fill="#6d4aff"/>
+          <text x="80" y="260" fill="#16161f" font-size="12" font-weight="650">Generate tree</text>
+        </g>
+
+        <!-- 2 · the trunk forks into three evenly spaced branches -->
+        <g fill="none" stroke="#c9bdf7" stroke-width="2.2" stroke-linecap="round">
+          <path class="dg dg-draw dg-t1" d="M268 163 C 316 163, 316 79, 364 79"/>
+          <path class="dg dg-draw dg-t1" d="M268 163 L 364 163"/>
+          <path class="dg dg-draw dg-t1" d="M268 163 C 316 163, 316 247, 364 247"/>
+        </g>
+        <g fill="none" stroke="#d8cff5" stroke-width="1.8" stroke-linecap="round">
+          <path class="dg dg-draw dg-t2" d="M504 79 C 526 79, 526 58, 548 58"/>
+          <path class="dg dg-draw dg-t2" d="M504 79 C 526 79, 526 100, 548 100"/>
+          <path class="dg dg-draw dg-t2" d="M504 163 C 526 163, 526 142, 548 142"/>
+          <path class="dg dg-draw dg-t2" d="M504 163 C 526 163, 526 184, 548 184"/>
+          <path class="dg dg-draw dg-t2" d="M504 247 C 526 247, 526 226, 548 226"/>
+          <path class="dg dg-draw dg-t2" d="M504 247 C 526 247, 526 268, 548 268"/>
+        </g>
+
+        <!-- 3 · every branch carries the same number of children, evenly spaced -->
+        <g class="dg dg-n">
+          <rect x="364" y="62" width="140" height="34" rx="11" fill="#fff" stroke="#e2d9ff" stroke-width="1.5"/>
+          <circle cx="382" cy="79" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="83" fill="#16161f" font-size="12" font-weight="600">Fundamentals</text>
+        </g>
+        <g class="dg dg-n">
+          <rect x="364" y="146" width="140" height="34" rx="11" fill="#f1ecff" stroke="#6d4aff" stroke-width="2"/>
+          <circle cx="382" cy="163" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="167" fill="#16161f" font-size="12" font-weight="700">Core methods</text>
+        </g>
+        <g class="dg dg-n">
+          <rect x="364" y="230" width="140" height="34" rx="11" fill="#fff" stroke="#e2d9ff" stroke-width="1.5"/>
+          <circle cx="382" cy="247" r="4.5" fill="#6d4aff"/>
+          <text x="396" y="251" fill="#16161f" font-size="12" font-weight="600">Applications</text>
+        </g>
+
+        <g class="dg dg-leaf">
+          <rect x="548" y="44" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="58" r="4" fill="#c7bef0"/>
+          <text x="576" y="62" fill="#3a3a48" font-size="11" font-weight="500">Key terms</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="86" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="100" r="4" fill="#c7bef0"/>
+          <text x="576" y="104" fill="#3a3a48" font-size="11" font-weight="500">History</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="128" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="142" r="4" fill="#c7bef0"/>
+          <text x="576" y="146" fill="#3a3a48" font-size="11" font-weight="500">Algorithms</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="170" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="184" r="4" fill="#c7bef0"/>
+          <text x="576" y="188" fill="#3a3a48" font-size="11" font-weight="500">Heuristics</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="212" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="226" r="4" fill="#c7bef0"/>
+          <text x="576" y="230" fill="#3a3a48" font-size="11" font-weight="500">Case study</text>
+        </g>
+        <g class="dg dg-leaf">
+          <rect x="548" y="254" width="132" height="28" rx="9" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.4"/>
+          <circle cx="563" cy="268" r="4" fill="#c7bef0"/>
+          <text x="576" y="272" fill="#3a3a48" font-size="11" font-weight="500">Further reading</text>
+        </g>
+
+        <!-- 4 · the clicked leaf gets an inline pencil action; that is what opens the note -->
+        <g class="dg dg-pick">
+          <rect x="548" y="128" width="132" height="28" rx="9" fill="#f1ecff" stroke="#6d4aff" stroke-width="1.8"/>
+          <circle cx="563" cy="142" r="4" fill="#6d4aff"/>
+          <text x="576" y="146" fill="#3a3a48" font-size="11" font-weight="650">Algorithms</text>
+        </g>
+        <g class="dg dg-pencil" transform="translate(688,128)">
+          <circle cx="14" cy="14" r="14" fill="#6d4aff"/>
+          <g transform="translate(6.6,6.6) scale(0.6)" fill="#fff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+        </g>
+        <path class="dg dg-link" d="M722 142 C 734 142, 738 163, 750 163" fill="none" stroke="#6d4aff" stroke-width="2.2" stroke-dasharray="1 7" stroke-linecap="round"/>
+
+        <!-- 5 · the note opens read-only, with Edit as the way in -->
+        <g class="dg dg-note">
+          <g filter="url(#cardShadow)"><rect x="756" y="57" width="350" height="212" rx="16" fill="#fff" stroke="#6d4aff" stroke-width="1.6"/></g>
+          <text x="778" y="88" fill="#16161f" font-size="13" font-weight="700">Algorithms</text>
+          <rect x="1022" y="72" width="62" height="24" rx="12" fill="#f8f7fb" stroke="#e7e5ee" stroke-width="1.2"/>
+          <g transform="translate(1031,77) scale(0.5)" fill="#8a8a9a"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+          <text x="1047" y="88" fill="#3a3a48" font-size="10.5" font-weight="600">Edit</text>
+          <line x1="776" y1="104" x2="1086" y2="104" stroke="#efedf5" stroke-width="1"/>
+          <rect x="778" y="118" width="290" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="134" width="246" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="150" width="272" height="7" rx="3.5" fill="#e7e5ee"/>
+          <rect x="778" y="166" width="214" height="7" rx="3.5" fill="#e7e5ee"/>
+        </g>
+        <!-- Edit engaged -->
+        <g class="dg dg-editon">
+          <rect x="1022" y="72" width="62" height="24" rx="12" fill="#f1ecff" stroke="#6d4aff" stroke-width="1.6"/>
+          <g transform="translate(1031,77) scale(0.5)" fill="#6d4aff"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></g>
+          <text x="1047" y="88" fill="#16161f" font-size="10.5" font-weight="700">Edit</text>
+        </g>
+
+        <!-- 6 · select a passage — the popover offers two separate actions -->
+        <rect class="dg-temp dg-sel" x="772" y="144" width="284" height="19" rx="5" fill="rgba(109,74,255,0.18)"/>
+        <g class="dg-temp dg-pop">
+          <g filter="url(#pillShadow)"><rect x="836" y="100" width="172" height="34" rx="11" fill="#fff" stroke="#e7e5ee" stroke-width="1.2"/></g>
+          <rect x="846" y="111" width="12" height="12" rx="3" fill="#f4a6a6" stroke="#dd8080" stroke-width="1"/>
+          <text x="864" y="121" fill="#3a3a48" font-size="10.5" font-weight="600">Highlight</text>
+          <line x1="920" y1="108" x2="920" y2="126" stroke="#e7e5ee" stroke-width="1.2"/>
+          <rect x="930" y="111" width="12" height="12" rx="3" fill="#fffbea" stroke="#eadb9b" stroke-width="1"/>
+          <text x="948" y="121" fill="#3a3a48" font-size="10.5" font-weight="600">Add note</text>
+        </g>
+
+        <!-- 7 · highlight first, then the note attached to it -->
+        <g class="dg dg-hl">
+          <rect x="772" y="144" width="284" height="19" rx="5" fill="#fdeaea" stroke="#efaeae" stroke-width="1.2"/>
+          <rect x="778" y="150" width="272" height="7" rx="3.5" fill="#de8c8c"/>
+        </g>
+        <g class="dg dg-notebox">
+          <rect x="772" y="186" width="284" height="42" rx="9" fill="#fffbea" stroke="#eadb9b" stroke-width="1.2"/>
+          <rect x="782" y="194" width="3" height="26" rx="1.5" fill="#e2c86a"/>
+          <rect x="796" y="199" width="232" height="5" rx="2.5" fill="#d9cfa5"/>
+          <rect x="796" y="211" width="180" height="5" rx="2.5" fill="#d9cfa5"/>
+        </g>
+        <text class="dg dg-foot" x="778" y="252" fill="#a99fd6" font-size="9.5" font-weight="600">&#9998; edited &#183; saved locally</text>
+
+        <!-- the pointer that drives the whole sequence -->
+        <g class="dg-cursor">
+          <circle class="dg-ripple" cx="0" cy="0" r="17" fill="#6d4aff"/>
+          <path d="M0 0 L0 19 L4.7 14.4 L8 22 L11.4 20.5 L8.2 13 L14 13 Z" fill="#16161f" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/>
+        </g>
+
+        <!-- labels -->
+        <text class="dg dg-card" x="140" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Structured answer</text>
+        <text class="dg dg-n" x="522" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Knowledge tree</text>
+        <text class="dg dg-note" x="931" y="312" text-anchor="middle" fill="#8a8a9a" font-size="11.5" font-weight="600">Editable note</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEMO VIDEO ============ -->
+<section class="block" id="demo" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-tag" data-lang-en>See it in action</div>
+      <div class="section-tag" data-lang-zh>看看实际效果</div>
+      <h2><span data-lang-en>Watch ChatNotion work, end to end</span><span data-lang-zh>完整看一遍 ChatNotion 的实际用法</span></h2>
+      <p class="lead">
+        <span data-lang-en>A short narrated walkthrough — from a scattered ChatGPT history to an organized, explorable workspace of trees and notes.</span>
+        <span class="block-zh" data-lang-zh>一段带解说的简短演示——从杂乱的 ChatGPT 历史，到井然有序、可探索的知识树与笔记工作台。</span>
+      </p>
+    </div>
+    <!-- Facade: only a poster and a play button until the viewer clicks. Nothing is requested
+         from YouTube before then, and the player's own title bar and branding never show. -->
+    <button class="video-frame reveal" id="videoFacade" type="button"
+            data-video="AUSVUwdfqSs"
+            aria-label="Play the ChatNotion demo video">
+      <img src="assets/chatnotion-demo-poster.jpg" alt="" width="1280" height="720" />
+      <span class="video-play" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+      </span>
+    </button>
+  </div>
+</section>
+
+<!-- ============ PROBLEM ============ -->
+<section class="block" id="problem">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-tag" data-lang-en>The problem</div>
+      <div class="section-tag" data-lang-zh>面临的问题</div>
+      <h2>
+        <span data-lang-en>Your learning is scattered across dozens of chats</span>
+        <span data-lang-zh>你的学习成果散落在几十段对话里</span>
+      </h2>
+      <p class="tagline">
+        <span data-lang-en>The answers pile up. <span class="accent">The structure never does.</span></span>
+        <span data-lang-zh>答案越攒越多，<span class="accent">结构却始终没有。</span></span>
+      </p>
+      <p class="lead">
+        <span data-lang-en>Learning a field or researching a topic rarely fits into one conversation. As questions multiply, useful context gets buried in chat history — and the ChatGPT sidebar becomes a flat, endless list.</span>
+        <span class="block-zh" data-lang-zh>学习一个领域或研究一个课题，往往无法在一段对话里完成。随着问题不断增加，有用的上下文被埋进聊天记录，而 ChatGPT 侧边栏也变成一长串扁平、看不到头的列表。</span>
+      </p>
+    </div>
+
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ic p">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h5l2 2h11v9a2 2 0 0 1-2 2H3z"/><path d="M8 3h6l1 2"/></svg>
+        </div>
+        <h3><span data-lang-en>Scattered conversations</span><span data-lang-zh>对话四处散落</span></h3>
+        <p><span data-lang-en>Related chats live in one long sidebar with no structure, and the right one is always hard to find again.</span><span data-lang-zh>相关的对话都堆在同一条长长的侧边栏里，毫无结构，想再找到那一段总是很费劲。</span></p>
+      </div>
+      <div class="card reveal">
+        <div class="ic s">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h10M4 12h16M4 19h7"/><path d="M18 4l2 2-6 6-3 1 1-3z"/></svg>
+        </div>
+        <h3><span data-lang-en>Structure lives elsewhere</span><span data-lang-zh>结构存在别处</span></h3>
+        <p><span data-lang-en>You paste links into Notion or notes, but then structure and conversations live apart — and keeping them in sync becomes its own chore.</span><span data-lang-zh>你把链接粘到 Notion 或笔记里，结构和对话却分了家——维护这套系统本身又成了一件麻烦事。</span></p>
+      </div>
+      <div class="card reveal">
+        <div class="ic m">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </div>
+        <h3><span data-lang-en>Lost context</span><span data-lang-zh>上下文丢失</span></h3>
+        <p><span data-lang-en>Each chat forgets how it connects to the bigger topic that gave it meaning, so you re-explain the same background again and again.</span><span data-lang-zh>每段对话都记不得自己与更大主题的关联，于是你只能一遍又一遍地重新交代同样的背景。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TREE MODE ============ -->
+<section class="block" id="tree">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-tag" data-lang-en>Tree mode</div>
+      <div class="section-tag" data-lang-zh>树模式</div>
+      <h2>
+        <span data-lang-en>From a broad question to an explorable tree</span>
+        <span data-lang-zh>从一个宽泛的问题，到一棵可探索的树</span>
+      </h2>
+      <p class="tagline">
+        <span data-lang-en>Ask big. <span class="accent">Branch as you go.</span></span>
+        <span data-lang-zh>大胆发问，<span class="accent">边走边分支。</span></span>
+      </p>
+      <p class="lead">
+        <span data-lang-en>Turn Tree mode on before you ask, and ChatGPT organizes its answer into a clean hierarchy. Then one <b>Generate tree</b> button on the finished answer extracts it into an expandable knowledge tree — locally, at whatever depth you choose.</span>
+        <span class="block-zh" data-lang-zh>提问前先打开树模式，ChatGPT 会把回答组织成清晰的层级结构。然后在完成的回答下点一下 <b>Generate tree</b>，就能在本地按你选择的深度，把它抽取成一棵可展开的知识树。</span>
+      </p>
+    </div>
+
+    <figure class="ui-shot note-showcase reveal">
+      <div class="gt-wrap">
+        <img src="assets/ui-generate-tree.png" alt="A finished, structured ChatGPT answer with the Generate tree button highlighted below it, and the ChatNotion panel on the right showing the answer turned into an expandable knowledge tree" loading="lazy" />
+        <svg class="gt-overlay" viewBox="0 12 1500 1420" preserveAspectRatio="none" aria-hidden="true">
+          <rect x="995" y="298" width="485" height="594" rx="14" fill="rgba(109,74,255,0.06)" stroke="#6d4aff" stroke-width="3" stroke-dasharray="11 8"/>
+          <!-- Hand-drawn looping arrow from the Generate tree button up to the tree it produced.
+               Its own chevron head replaces the marker, so the tip keeps the drawn-by-hand feel. -->
+          <g fill="none" stroke="#6d4aff" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M 1063 1247
+                     C 1130 1263, 1181 1234, 1187 1190
+                     C 1194 1155, 1162 1132, 1136 1148
+                     C 1114 1163, 1117 1196, 1146 1212
+                     C 1187 1234, 1251 1196, 1257 1110
+                     C 1264 1044, 1235 989, 1213 944"/>
+            <path d="M 1184 973 L 1211 934 L 1245 963"/>
+          </g>
+          <rect class="gt-pulse" x="804" y="1206" width="250" height="47" rx="23" fill="none" stroke="#6d4aff" stroke-width="3"/>
+          <rect x="804" y="1206" width="250" height="47" rx="23" fill="rgba(109,74,255,0.12)" stroke="#6d4aff" stroke-width="3.4"/>
+          <g transform="translate(1006,1234)">
+            <path d="M0 0 L0 27 L6.8 20.4 L11.4 31 L16.2 28.8 L11.6 18.6 L20 18.6 Z" fill="#16161f" stroke="#fff" stroke-width="2.2" stroke-linejoin="round"/>
+          </g>
+        </svg>
+      </div>
+      <figcaption data-lang-en>Real ChatNotion UI — click <b>Generate tree</b> on a finished answer and it becomes an explorable tree in the panel (depth configurable).</figcaption>
+      <figcaption data-lang-zh>真实的 ChatNotion 界面 —— 在完成的回答上点 <b>Generate tree</b>，它就会在面板里变成一棵可探索的树（深度可调）。</figcaption>
+    </figure>
+
+    <div class="note-points reveal">
+      <div class="np">
+        <div class="ic m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></div>
+        <h4><span data-lang-en>Open any node as a chat</span><span data-lang-zh>把任意节点作为对话打开</span></h4>
+        <p><span data-lang-en>Each node opens as a focused conversation with concise parent context — never a silent auto-submit.</span><span data-lang-zh>每个节点都能作为专注对话打开，附带精简的上级上下文——绝不会静默替你发送。</span></p>
+      </div>
+      <div class="np">
+        <div class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><circle cx="18" cy="8" r="2.6"/><path d="M6 8.6v6.8M6 15.4C6 11 8.5 8 15.4 8"/></svg></div>
+        <h4><span data-lang-en>Explore non-linearly</span><span data-lang-zh>非线性地探索</span></h4>
+        <p><span data-lang-en>Expand one branch, skip to another, reorganize, and return to any node later.</span><span data-lang-zh>展开一个分支、跳到另一个、重新整理，随时回到之前的节点。</span></p>
+      </div>
+      <div class="np">
+        <div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+        <h4><span data-lang-en>Local &amp; heuristic extraction</span><span data-lang-zh>本地启发式抽取</span></h4>
+        <p><span data-lang-en>Built from the answer's own headings and lists, with a configurable depth of 1–5.</span><span data-lang-zh>基于回答自身的标题和列表结构生成，抽取深度可在 1–5 之间调整。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NODE NOTES (new feature) ============ -->
+<section class="block" id="notes" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-tag" data-lang-en>Notes</div>
+      <div class="section-tag" data-lang-zh>笔记</div>
+      <h2>
+        <span data-lang-en>Every node opens as an editable note</span>
+        <span data-lang-zh>每个节点都能展开成一份可编辑的笔记</span>
+      </h2>
+      <p class="tagline">
+        <span data-lang-en>AI writes the first draft. <span class="accent">You keep the final cut.</span></span>
+        <span data-lang-zh>AI 出初稿，<span class="accent">你留终稿。</span></span>
+      </p>
+      <p class="lead">
+        <span data-lang-en>Click a node and it expands, Notion-style, into the full ChatGPT content behind it. Trim it to the key ideas, highlight what matters, and add your own notes — the original answer stays one click away.</span>
+        <span class="block-zh" data-lang-zh>点击节点，它会像 Notion 一样展开，呈现该节点背后的完整 ChatGPT 内容。把它删减成关键要点、高亮重点、写下自己的批注——原始回答始终一键可回。</span>
+      </p>
+    </div>
+
+    <figure class="ui-shot note-showcase reveal">
+      <img src="assets/ui-note.png" alt="A ChatNotion node expanded into a wide Notion-style note page: the tree on the left, and the ChatGPT content on the right rendered as an editable, highlighted Markdown document with Edit, Restore original, and Open original chat controls" loading="lazy" />
+      <figcaption data-lang-en>Real ChatNotion UI — a node expanded into an editable, highlightable note, saved locally.</figcaption>
+      <figcaption data-lang-zh>真实的 ChatNotion 界面 —— 节点展开成一份可编辑、可高亮的笔记，本地保存。</figcaption>
+    </figure>
+
+    <div class="note-points reveal">
+      <div class="np">
+        <div class="ic m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h4><span data-lang-en>Edit down to the essentials</span><span data-lang-zh>删减到只剩精华</span></h4>
+        <p><span data-lang-en>Rewrite or trim the answer to just the key ideas. Your edits save locally and never change ChatGPT.</span><span data-lang-zh>把回答改写或删减成关键要点。改动只存在本地，绝不改动 ChatGPT。</span></p>
+      </div>
+      <div class="np">
+        <div class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h3l6-6"/><path d="M14 6l4 4"/><path d="M3 3l7.5 7.5"/><path d="M14.5 5.5 18 2l4 4-3.5 3.5z"/></svg></div>
+        <h4><span data-lang-en>Highlight &amp; annotate</span><span data-lang-zh>高亮与批注</span></h4>
+        <p><span data-lang-en>Mark the passages that matter with colored highlights and drop inline notes right where they belong.</span><span data-lang-zh>用彩色高亮标出重点段落，并在相应位置写下行内批注。</span></p>
+      </div>
+      <div class="np">
+        <div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div>
+        <h4><span data-lang-en>Original always recoverable</span><span data-lang-zh>原文随时可恢复</span></h4>
+        <p><span data-lang-en>Restore the captured source in one click, or jump back to the original ChatGPT conversation anytime.</span><span data-lang-zh>一键恢复捕获的原始内容，或随时跳回原始 ChatGPT 对话。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES GRID ============ -->
+<section class="block" id="features">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-tag" data-lang-en>Highlights</div>
+      <div class="section-tag" data-lang-zh>亮点</div>
+      <h2><span data-lang-en>Everything you need, nothing you don't</span><span data-lang-zh>你需要的一切，没有多余负担</span></h2>
+    </div>
+    <div class="grid4">
+      <div class="hl reveal">
+        <div class="ic m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8l7-5 7 5M5 8v8l7 5 7-5V8"/></svg></div>
+        <h4><span data-lang-en>Knowledge trees</span><span data-lang-zh>知识树</span></h4>
+        <p><span data-lang-en>Generate tree turns a structured answer into an expandable tree — open any node as its own chat.</span><span data-lang-zh>“生成树”把结构化回答变成可展开的树——每个节点都能作为独立对话打开。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+        <h4><span data-lang-en>Freely nested workspace</span><span data-lang-zh>自由嵌套工作台</span></h4>
+        <p><span data-lang-en>Folders and conversations nest at any depth. Drag, drop, reorder, and move nodes between parents or back to the root.</span><span data-lang-zh>文件夹与对话可任意深度嵌套。拖拽、排序，在不同父节点之间移动，或移回根目录。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h4><span data-lang-en>Editable notes</span><span data-lang-zh>可编辑笔记</span></h4>
+        <p><span data-lang-en>Open any node as an editable note and trim the ChatGPT content down to just the key ideas, saved locally.</span><span data-lang-zh>把任意节点作为可编辑笔记打开，将 ChatGPT 内容删减到只剩关键要点，本地保存。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11-6 6v3h3l6-6"/><path d="M14 6l4 4"/><path d="M3 3l7.5 7.5"/><path d="M14.5 5.5 18 2l4 4-3.5 3.5z"/></svg></div>
+        <h4><span data-lang-en>Highlight &amp; annotate</span><span data-lang-zh>高亮与批注</span></h4>
+        <p><span data-lang-en>Mark what matters with colored highlights and drop inline notes — in whatever color you pick.</span><span data-lang-zh>用彩色高亮标出重点，并写下行内批注——颜色任你选择。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg></div>
+        <h4><span data-lang-en>Prompt tools</span><span data-lang-zh>Prompt 工具</span></h4>
+        <p><span data-lang-en>Save reusable prefix/postfix prompts (like Tree mode) that always keep your original question intact.</span><span data-lang-zh>把可复用的前缀/后缀 Prompt（如树模式）存起来，始终保留你原本的问题。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></div>
+        <h4><span data-lang-en>Undo &amp; Redo</span><span data-lang-zh>撤销与重做</span></h4>
+        <p><span data-lang-en>Step back through the last 10 tree, note, and Prompt changes — experiment without fear.</span><span data-lang-zh>可回退最近 10 步树、笔记与 Prompt 的改动——放心大胆地尝试。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>
+        <h4><span data-lang-en>Local backups</span><span data-lang-zh>本地备份</span></h4>
+        <p><span data-lang-en>Portable JSON backups, validated restore, and optional rotating auto-backups to a folder you choose.</span><span data-lang-zh>可移植的 JSON 备份、带校验的恢复，以及可选的滚动自动备份到你指定的文件夹。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h4><span data-lang-en>Private &amp; bilingual</span><span data-lang-zh>隐私优先 · 双语</span></h4>
+        <p><span data-lang-en>No account, server, or analytics — everything stays local. Fully bilingual: English &amp; 中文.</span><span data-lang-zh>无账号、无服务器、无分析统计——一切留在本地。完整中英双语界面。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic m"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20c1.8 0 2.6-1.2 3-3.4L10.6 4.9C11 2.9 11.9 2 13.5 2c1 0 1.8.3 2.5.9"/><path d="M7 9h8"/><path d="M15 12l6 8M21 12l-6 8"/></svg></div>
+        <h4><span data-lang-en>Math stays typeset</span><span data-lang-zh>公式保持排版</span></h4>
+        <p><span data-lang-en>Formulas captured from ChatGPT are stored as clean LaTeX and re-rendered with bundled KaTeX.</span><span data-lang-zh>从 ChatGPT 捕获的公式会存成干净的 LaTeX，并由内置 KaTeX 重新渲染。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="4" r="2.2"/><circle cx="6" cy="20" r="2.2"/><circle cx="18" cy="12" r="2.2"/><path d="M6 6.2v11.6M6 12h9.8"/></svg></div>
+        <h4><span data-lang-en>Native branches recognized</span><span data-lang-zh>识别原生分支</span></h4>
+        <p><span data-lang-en>Branch a chat with ChatGPT's own command and the new thread nests under its parent automatically.</span><span data-lang-zh>用 ChatGPT 自带的分支功能开启新对话，它会自动嵌套到父对话之下。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3z" stroke-dasharray="2.5 2"/><path d="M14 5h7M14 10h7M14 15h7M14 20h7"/><path d="M4 15l2 2 4-4"/></svg></div>
+        <h4><span data-lang-en>Multi-select &amp; batch actions</span><span data-lang-zh>多选与批量操作</span></h4>
+        <p><span data-lang-en>Marquee-drag or <code>Cmd</code>/<code>Ctrl</code>+<code>Shift</code> click to select many nodes, then move or delete them at once.</span><span data-lang-zh>框选拖动，或用 <code>Cmd</code>/<code>Ctrl</code>+<code>Shift</code> 点选多个节点，然后一次性移动或删除。</span></p>
+      </div>
+      <div class="hl reveal">
+        <div class="ic g"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h7"/></svg></div>
+        <h4><span data-lang-en>Saves itself — or doesn't</span><span data-lang-zh>自动保存，也可手动</span></h4>
+        <p><span data-lang-en>Conversations save automatically after the first message, or switch to manual mode and save only what you pick.</span><span data-lang-zh>对话会在首条消息后自动保存；也可切换到手动模式，只保存你挑选的内容。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section class="block" id="privacy">
+  <div class="wrap">
+    <div class="privacy reveal">
+      <div class="inner">
+        <div>
+          <div class="section-tag" style="color:#b9a8ff;" data-lang-en>Privacy</div>
+          <div class="section-tag" style="color:#b9a8ff;" data-lang-zh>隐私</div>
+          <h2><span data-lang-en>No server. No tracking. Ever.</span><span data-lang-zh>没有服务器，没有追踪，从不例外。</span></h2>
+          <p class="lead"><span data-lang-en>ChatNotion has no developer-operated server, analytics, advertising SDK, remote logging, or remotely hosted code. It asks for only what it needs to run.</span><span class="block-zh" data-lang-zh>ChatNotion 没有开发者运营的服务器、没有分析统计、没有广告 SDK、没有远程日志、也没有远程托管的代码。它只请求运行所必需的权限。</span></p>
+        </div>
+        <div class="perm-list">
+          <div class="perm">
+            <code>storage</code>
+            <span class="pt"><b data-lang-en>Organizer data</b><b data-lang-zh>整理数据</b><span data-lang-en> &amp; preferences, kept locally.</span><span data-lang-zh>与偏好设置，全部保存在本地。</span></span>
+          </div>
+          <div class="perm">
+            <code>alarms</code>
+            <span class="pt"><b data-lang-en>Optional</b><b data-lang-zh>可选的</b><span data-lang-en> scheduled local backups.</span><span data-lang-zh>定时本地备份。</span></span>
+          </div>
+          <div class="perm">
+            <code>unlimitedStorage</code>
+            <span class="pt"><span data-lang-en>Keeps captured text &amp; edited notes on your device, past Chrome's small quota.</span><span data-lang-zh>让捕获的文本与已编辑的笔记留在你的设备上，不受 Chrome 小额存储配额限制。</span></span>
+          </div>
+          <div class="perm">
+            <code>chatgpt.com</code>
+            <span class="pt"><span data-lang-en>Where the organizer is displayed.</span><span data-lang-zh>整理面板展示的位置。</span></span>
+          </div>
+          <div class="perm no">
+            <span class="x">✕</span>
+            <span class="pt"><span data-lang-en>No passwords, cookies, tokens, history, or unrelated sites.</span><span data-lang-zh>不获取密码、Cookie、令牌、浏览历史或任何无关网站。</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-bottom foot-only">
+      <span class="foot-sig">
+        <a class="foot-logo" href="#top" aria-label="ChatNotion — back to top"><img src="assets/icon.svg" alt="ChatNotion logo" /></a>
+        <span data-lang-en>From scattered chats to trees you explore and notes you keep.</span>
+        <span data-lang-zh>从散落的对话，到可探索的知识树，与你留下的笔记。</span>
+      </span>
+      <span>© 2026 ChatNotion contributors · MIT</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
